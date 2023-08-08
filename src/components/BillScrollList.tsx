@@ -26,22 +26,28 @@ export default function BillScrollList({shopList}: Props) {
     const gridLayout = `grid-cols-${friends.length + 4}`
 
   return (
-    <div>
-        <ScrollArea.Root className="text-text h-96 m-4 rounded overflow-hidden bg-primary/5 shadow-inner ">
+    <div className='className="text-text h-96 m-4 rounded overflow-hidden bg-primary/5 shadow-inner py-4'>
+        <div className="text-text text-[20px] leading-[18px] font-medium text-center text-2xl mb-4 w-full">Feira</div>
+        <div className={clsx('grid grid-cols-9 gap-1 justify-center items-center text-center text-base px-5', gridLayout)}>
+            <div className='col-start-1 border-b-2 border-primary h-full'>Nome</div>
+            <div className='col-start-2 border-b-2 border-primary h-full'>Quantidade comprada</div>
+            <div className='col-start-3 border-b-2 border-primary h-full'>Preço Unitario</div>
+            <div className='col-start-4 border-b-2 border-primary h-full'>Preço Total</div>
+            {friends.map((friend,index) => {
+                let styleClassName = `col-start-${index + 5}`
+                return (
+                    <div key={friend} className={clsx('border-b-2 border-primary h-full', styleClassName)}>{friend}</div>)
+            })}
+        </div>
+        
+        
+        <ScrollArea.Root className="text-text h-full rounded overflow-hidden ">
                                 <ScrollArea.Viewport className="w-full h-full rounded">
                                 <div className="py-[15px] px-5">
-                                    <div className="text-text text-[20px] leading-[18px] font-medium text-center text-2xl mb-4 sticky">Feira</div>
+                                    
                                     <div className={clsx('grid grid-cols-9 gap-1 justify-center items-center text-center text-base', gridLayout)}>
                                         
-                                        <div className='col-start-1 border-b-2 border-primary h-full'>Nome</div>
-                                        <div className='col-start-2 border-b-2 border-primary h-full'>Quantidade comprada</div>
-                                        <div className='col-start-3 border-b-2 border-primary h-full'>Preço Unitario</div>
-                                        <div className='col-start-4 border-b-2 border-primary h-full'>Preço Total</div>
-                                        {friends.map((friend,index) => {
-                                            let styleClassName = `col-start-${index + 5}`
-                                            return (
-                                                <div key={friend} className={clsx(' border-b-2 border-primary h-full', styleClassName)}>{friend}</div>)
-                                        })}
+                                        
                                         {shopList.map((item,index) => (
                                             <>
                                                 <p className='h-full items-center flex justify-center border-b-2 border-primary'>{item.name}</p>
